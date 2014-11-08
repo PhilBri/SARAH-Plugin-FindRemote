@@ -1,0 +1,27 @@
+<grammar version="1.0" xml:lang="fr-FR" mode="voice" root="ruleFindRemote" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+    <rule id="ruleFindRemote" scope="public">
+        <example>Sarah quels sont les objets connectés</example>
+
+        <tag>out.action=new Object(); </tag>
+
+        <item>
+            Sarah 
+            <one-of>
+
+                <item>Liste moi</item>
+                <item>Donne moi</item>
+                <item>Quels sont</item>
+                <item>Vérifie</item>
+                <item>Dis moi</item>
+                <item>Scanne</item>
+            </one-of>
+            
+            <one-of>
+                <item>les objets</item>
+                <item>les objets connectés</item>
+                <item>le réseau</item>
+            </one-of>
+        </item>
+       <tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/FindRemote";</tag>
+    </rule>
+</grammar>

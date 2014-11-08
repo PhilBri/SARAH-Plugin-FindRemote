@@ -1,0 +1,9 @@
+{
+  "modules" : { 
+    "FindRemote"  : {
+      "description": "SARAH controle le Décodeur TV LiveBox.",
+      "version" : "1.0",
+	  "search": "friendlyName"
+    }
+  }
+}
