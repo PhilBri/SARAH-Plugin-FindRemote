@@ -1,7 +1,7 @@
 {
   "modules" : { 
     "FindRemote"  : {
-      "description": "SARAH controle le Décodeur TV LiveBox.",
+      "description": "SARAH annonce les objects connectés.",
       "version" : "1.0",
 	  "search": "friendlyName"
     }
