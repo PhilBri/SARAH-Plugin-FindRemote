@@ -1,5 +1,5 @@
 /*________________________________________________________
-|                  FindRemote v1.0                        |
+|                  FindRemote v1.1                        |
 |                                                         |
 | Author : Phil Bri ( 11/2014 )                           |
 | Description :                                           |
@@ -34,23 +34,19 @@ exports.action = function ( data , callback , config , SARAH ) {
 
 	var haveObjects = function ( ipTab ) {
 		my_Objects = ipTab;
-		SARAH.speak ( "Vous avez " + Object.keys(ipTab).length + " objets." );
+		SARAH.speak ( "Vous avez " + Object.keys(ipTab).length + " objets.", function() {
+			SARAH.speak ( listObjects (ipTab), function () {
+				SARAH.speak ( 'Recherche terminée.' );
+			});
+		});
 		callback ({});
-		for (var key in ipTab)
-			ipTab[key]['ip']= ipTab[key]['ip'].substring(8);
-		listObjects (ipTab);
 	};
-	
-	var listObjects = function ( ipTab ) {
-		for (var key in ipTab)
-			SARAH.speak ( /(.+?)(?=:)|(.+)/.exec(key)[0] + ' à l\'adresse '+ ipTab[key]['ip'] )
-		callback ({});
-		endObjects ();
-	}
 
-	var endObjects = function () {
-		SARAH.speak ('Recherche terminée.');
-		callback ({});
+	var listObjects = function ( ipTab ) {
+		var str = '';
+		for (var key in ipTab)
+			str = str + ( /(.+?)(?=:)|(.+)/.exec(key)[0] + ' à l\'adresse '+ ipTab[key]['ip'].substring(8) + ', ' );
+		return str;
 	}
 
 	objFind.on ( 'authenticate', getObjects );
