@@ -28,18 +28,15 @@ exports.action = function ( data , callback , config , SARAH ) {
 	
 	var getObjects = function () {
 		SARAH.speak ( "Recherche des objets.");
-		callback ({});
 		objFind.getObjects ( reqFind );
 	};
 
 	var haveObjects = function ( ipTab ) {
-		my_Objects = ipTab;
 		SARAH.speak ( "Vous avez " + Object.keys(ipTab).length + " objets.", function() {
 			SARAH.speak ( listObjects (ipTab), function () {
-				SARAH.speak ( 'Recherche terminée.' );
-			});
-		});
-		callback ({});
+				SARAH.speak ( 'Recherche terminée.' )
+			})
+		})
 	};
 
 	var listObjects = function ( ipTab ) {
@@ -51,4 +48,5 @@ exports.action = function ( data , callback , config , SARAH ) {
 
 	objFind.on ( 'authenticate', getObjects );
 	objFind.on ( 'have-objects', haveObjects );
+	callback ({});
 }
